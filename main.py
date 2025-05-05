@@ -20,19 +20,10 @@ st.title("Dashboard Monitoring Bendungan dan PLTA")
 
 # PILIHAN FILTER
 lokasi_bendung = st.selectbox("Pilih Bendungan", data_bendungan['lokasi'].unique())
-plta_terpilih = st.selectbox("Pilih PLTA", data_plta['nama_plta'].unique())
-
-# FILTER DATA
 data_bendungan_filter = data_bendungan[data_bendungan['lokasi'] == lokasi_bendung]
-data_plta_filter = data_plta[data_plta['nama_plta'] == plta_terpilih]
-
 # TAMPILKAN TABEL
 st.subheader(f"Data Debit Air - {lokasi_bendung}")
 st.dataframe(data_bendungan_filter)
-
-st.subheader(f"Data Produksi Listrik - {plta_terpilih}")
-st.dataframe(data_plta_filter)
-
 # VISUALISASI GRAFIK
 st.subheader("Grafik Debit Air")
 fig, ax = plt.subplots()
@@ -41,6 +32,17 @@ ax.set_ylabel("Debit (m³/s)")
 ax.set_xlabel("Tanggal")
 ax.set_title(f"Debit Air Harian - {lokasi_bendung}")
 st.pyplot(fig)
+
+
+plta_terpilih = st.selectbox("Pilih PLTA", data_plta['nama_plta'].unique())
+# FILTER DATA
+data_plta_filter = data_plta[data_plta['nama_plta'] == plta_terpilih]
+
+
+st.subheader(f"Data Produksi Listrik - {plta_terpilih}")
+st.dataframe(data_plta_filter)
+
+
 
 st.subheader("Grafik Produksi Listrik")
 fig2, ax2 = plt.subplots()
