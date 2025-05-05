@@ -1,0 +1,4 @@
+streamlit
+matplotlib
+pandas
+# dan library lain yang dibutuhkan
